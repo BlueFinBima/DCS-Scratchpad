@@ -1,3 +1,23 @@
+--
+--
+-- Scratchpad script from https://github.com/rkusa/dcs-scratchpad
+-- Discussion https://forums.eagle.ru/showthread.php?t=229077
+--
+--
+--  This does not look like it will run from the exports.lua because
+--  it needs to referece the DCS global which is not available.
+--
+--
+--  To reference all of the packages for this script outside of the 
+--  "hook" envirnonment, the following need to be added:
+--
+-- package.path  = package.path..";" .. lfs.currentdir() .. "MissionEditor\\modules\\?.lua"
+-- package.path  = package.path..";" .. lfs.currentdir() .. "dxgui\\loader\\?.lua"
+-- package.path  = package.path..";" .. lfs.currentdir() .. "dxgui\\bind\\?.lua"
+-- package.path  = package.path..";" .. lfs.currentdir() .. "dxgui\\skins\\common\\?.lua"
+-- package.path  = package.path..";" .. lfs.currentdir() .. "dxgui\\skins\\skinME\\?.lua"
+--
+--
 function scratchpad_load()
 
     package.path  = package.path..";.\\Scripts\\?.lua;.\\Scripts\\UI\\?.lua;"
@@ -23,7 +43,7 @@ function scratchpad_load()
 
     function scratchpad.loadConfiguration()
         scratchpad.log("Loading config file...")
-        local tbl = Tools.safeDoFile(lfs.writedir() .. "Config/ScratchpadConfig.lua", false)
+        local tbl = Tools.safeDoFile(lfs.writedir() .. "Config/Scratchpad.lua", false)
         if (tbl and tbl.config) then
             scratchpad.log("Configuration exists...")
             scratchpad.config = tbl.config
@@ -47,7 +67,7 @@ function scratchpad_load()
     end
 
     function scratchpad.saveConfiguration()
-        U.saveInFile(scratchpad.config, "config", lfs.writedir() .. "Config/ScratchpadConfig.lua")
+        U.saveInFile(scratchpad.config, "config", lfs.writedir() .. "Config/Scratchpad.lua")
     end
 
     function scratchpad.log(str)
@@ -79,7 +99,7 @@ function scratchpad_load()
     end
 
     function scratchpad.createWindow()
-        window = DialogLoader.spawnDialogFromFile(lfs.writedir() .. "Scripts\\Scratchpad\\ScratchpadWindow.dlg", cdata)
+        window = DialogLoader.spawnDialogFromFile(lfs.writedir() .. "Scripts\\GUI\\Scratchpad\\ScratchpadWindow.dlg", cdata)
         windowDefaultSkin = window:getSkin()
         panel = window.Box
         textarea = panel.ScratchpadEditBox

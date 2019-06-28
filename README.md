@@ -18,6 +18,11 @@ Some settings can be changed in your DCS saved games folder under `Config/Scratc
 - `hotkey` change the hotkey used to toggle the scratchpad
 - `fontSize` increase or decrease the font size of the scratchpad's textarea
 
+## Notes
+
+- Needs to be hooked in to have access to the DCS global which is not available via the usual exports route.
+- Discussion https://forums.eagle.ru/showthread.php?t=229077 
+
 ## Kudos
 
 - to [DCS-SimpleRadioStandalone](https://github.com/ciribob/DCS-SimpleRadioStandalone) which acted as a good reference of how to setup a simple window in DCS
